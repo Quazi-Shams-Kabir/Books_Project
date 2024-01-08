@@ -1,6 +1,6 @@
-# Book Review
+# Book Recommendation Project
 
-
+Checkout:<a href="https://book-recommendation-v0jk.onrender.com/"> Book Recommendation</a>
 
 - Project to practice postgresql, some more api concepts and hmtl, css, js.  
 
