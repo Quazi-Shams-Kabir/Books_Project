@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Book</title>
+    <link rel="stylesheet" href="css/paginationStyle.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="container2">
+        <div class="close" id="closeBtn">
+          <form action="/" method="get">
+            <button type="submit" class="closeBtn">
+              <img
+                src="assets/icons/close.svg"
+                alt="close logo"
+                class="closeLogo"
+              />
+            </button>
+          </form>
+        </div>
+
+        <div class="paginationContent">
+          <form id="myForm">
+            <div class="search">
+              <input
+                type="text"
+                class="searchText"
+                id="searchInput"
+                name="searchInput"
+              />
+              <button type="submit" class="searchBtn">
+                <img
+                  src="assets/icons/search.svg"
+                  alt="search logo"
+                  class="searchLogo"
+                />
+              </button>
+            </div>
+          </form>
+            <div id="data-container" class="searchResults">
+              <!-- Data will be displayed here -->
+            </div>
+          <div class="paginationContainer">
+            <ul class="pagination" id="pagination">
+              <li><a href="#" id="prev"> << </a></li>
+              <!-- Page number buttons will be added here -->
+              <li><a href="#" id="next"> >> </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/paginationScript.js"></script>
+  </body>
+</html>

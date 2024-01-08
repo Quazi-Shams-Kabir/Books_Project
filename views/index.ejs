@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="sort">
+      <form action="/sort" method="post" name="form">
+        <select name="sort" onchange="this.form.submit()">
+          <option selected>Sort</option>
+          <option value="name" name="name">Alphabetic</option>
+          <option value="year" name="recency">Most Recent</option>
+          <option value="rating" name="rating">Most Recommended</option>
+        </select>
+      </form>
+    </div>
+    <% books.forEach(book => { %>
+    <div class="heading">
+      <div class="book__title">
+        <p><%= book.name %> (<%= book.year %>)</p>
+        <div class="author">{&nbsp; <%= book.author %> &nbsp;}</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="leftSide">
+        <div class="image">
+          <img
+          <% if (book.book_id) {%>
+            src="https://covers.openlibrary.org/b/olid/<%=book.book_id%>-M.jpg"
+            <%} else {%>
+              src="assets/images/emptyBookCover.png"
+            <%}%>
+            alt="book cover"
+            width="190px"
+          />
+        </div>
+        <div class="links">
+          <a
+          <% if (book.buy) {%>
+            href="<%= book.buy %>"
+            <%} else {%>
+              href="https://www.amazon.in"
+              <%}%>
+           target="_blank"><button>Buy</button></a>
+          <a
+          <% if (book.pdf) {%>
+            href="<%= book.pdf %>"
+            <%} else {%>
+              href="#"
+              <%}%>
+           target="_blank"><button>Pdf</button></a>
+        </div>
+      </div>
+      <div class="rightSide">
+        <div class="summary">
+          <div class="rightSide__title">Summary</div>
+          <div class="rightSide__text">
+            <p><%= book.summary %></p>
+          </div>
+        </div>
+        <div class="quote">
+          <p><%= book.quote %></p>
+        </div>
+        <div class="review">
+          <div class="review__title rightSide__title">
+            <div>My Review</div>
+            <img
+              src="assets/icons/edit.svg"
+              alt="edit logo"
+              id="edit<%=book.book_id%>"
+              onclick="handler('<%=book.book_id%>')"
+            />
+            <img
+              src="assets/icons/save.svg"
+              alt="save logo"
+              id="save<%=book.book_id%>"
+              class="hide"
+              onclick="reverseHandler('<%=book.book_id%>')"
+            />
+          </div>
+
+          <form
+            action="/save"
+            method="post"
+            id="textarea__form<%=book.book_id%>"
+          >
+            <div
+              class="rightSide__text hide"
+              id="edit__review__text<%=book.book_id%>"
+            >
+              <input
+                type="hidden"
+                name="id"
+                id="id"
+                value="<%=book.book_id%>"
+              />
+              <textarea
+                id="textarea<%=book.book_id%>"
+                name="edited__text"
+                cols="30"
+                rows="3"
+                autocomplete="off">
+                <%= book.review %>
+              </textarea>
+            </div>
+          </form>
+
+          <div class="rightSide__text" id="review__text<%=book.book_id%>">
+            <p><%= book.review %></p>
+          </div>
+        </div>
+        <div class="bottomLine">
+          <div class="recommendation">Rating:-&nbsp; <%= book.rating %></div>
+          <form action="/delete" method="post">
+            <div class="trash">
+              <button type="submit" name="submit" value="<%=book.book_id%>">
+                <img src="assets/icons/delete.svg" alt="trash can logo" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+
+    <a href="#">
+      <div class="move_to_top">
+        <img src="assets/icons/arrow_up.svg" alt="arrow up icon" class="move_to_top_arrow">
+      </div>
+    </a>
+
+    <!-- || ADD NEW BOOK -->
+    <%- include("../add.html") %>
+    <a href="pagination.html" class="addNew">
+      <button class="new">
+        <img src="assets/icons/add.svg" alt="Add New icon" />
+        <div class="new__text">
+            Add New
+        </div>
+      </button>
+    </a>
+
+    <script src="js/script.js"></script>
+    <script src="js/add.js"></script>
+  </body>
+  <footer>&copy; QSK</footer>
+</html>

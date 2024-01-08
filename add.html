@@ -1,0 +1,145 @@
+<!-- linked with index.ejs -->
+<section id="addNewSection">
+  <form action="/add" method="post" id="newBook__form">
+    <div class="newBook hide" id="newBook">
+      <div class="heading">
+        <div class="book__title">
+          <div
+            class="flex"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <textarea
+              name="name"
+              id="bookName"
+              cols="30"
+              rows="1"
+              placeholder="Book Name here..."
+              style="width: 80%"
+              autocomplete="off"
+              required
+            ></textarea>
+            <input
+              type="number"
+              class="year"
+              name="year"
+              id="publicationYear"
+              required
+            />
+          </div>
+          <div class="author">
+            - by&nbsp;&nbsp;<input
+              type="text"
+              name="author"
+              id="authorName"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="content new__content">
+        <div class="leftSide">
+          <div class="leftSide__links">
+            <div>
+              <div class="rightSide__title">Book Id</div>
+              <input
+                class="book__id__input"
+                type="text"
+                name="id"
+                placeholder="cover id..."
+                id="book_id"
+              />
+            </div>
+            <div>
+              <div class="rightSide__title">Buy link</div>
+              <input
+                class="book__id__input"
+                type="text"
+                name="buy"
+                placeholder="buy link..."
+                id="buy_link"
+              />
+            </div>
+            <div>
+              <div class="rightSide__title">Pdf link</div>
+              <input
+                class="book__id__input"
+                type="text"
+                name="pdf"
+                placeholder="pdf link..."
+                id="pdf_link"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="rightSide">
+          <div class="summary">
+            <div class="rightSide__title">Summary</div>
+            <div class="rightSide__text">
+              <textarea
+                name="summary"
+                id=""
+                cols="30"
+                rows="4"
+                placeholder="Write your book summary here..."
+                autocomplete="off"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="quote">
+            <textarea
+              name="quote"
+              id=""
+              cols="30"
+              rows="1"
+              placeholder="Write your fav quote from the book here..."
+              style="width: 50%"
+              autocomplete="off"
+              required
+            ></textarea>
+          </div>
+          <div class="review">
+            <div class="review__title rightSide__title">
+              <div>My Review</div>
+            </div>
+
+            <div class="rightSide__text">
+              <textarea
+                name="review"
+                id=""
+                cols="30"
+                rows="3"
+                placeholder="Write your review here..."
+                autocomplete="off"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="bottomLine">
+            <div class="recommendation">
+              Rating:-&nbsp;
+              <input
+                type="number"
+                min="0"
+                max="10"
+                step="0.1"
+                name="rating"
+                required
+              />
+            </div>
+            <div class="trash newButtons">
+              <button onclick="submitForm()">
+                <img src="assets/icons/save.svg" alt="save logo" />
+              </button>
+              <button onclick="newBookReverse()">
+                <img src="assets/icons/delete.svg" alt="trash can logo" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
