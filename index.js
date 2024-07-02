@@ -1,29 +1,29 @@
 import express from "express";
 import pg from "pg";
 import bodyParser from "body-parser";
-import 'dotenv/config'
+import "dotenv/config";
 
 const app = express();
 const port = 3000;
 
 // DB
- //for my local machine
- //const db = new pg.Client({
- //  user: "postgres",
- //  host: "localhost",
- //  database: "books",
- //  password: "12345678",
- //  port: 5432,
- //});
+//for my local machine
+//const db = new pg.Client({
+//  user: "postgres",
+//  host: "localhost",
+//  database: "books",
+//  password: "12345678",
+//  port: 5432,
+//});
 
 // for deployment
 const db = new pg.Client({
   user: "books_project_user",
   password: process.env.PG_PASS,
-  database: "books_project_89cr",
+  database: "books_project_27cv",
   port: 5432,
-  host: "dpg-cpb1juv79t8c73b744a0-a.singapore-postgres.render.com",
-  ssl:true
+  host: "dpg-cq1q2nbv2p9s73d605kg-a.singapore-postgres.render.com",
+  ssl: true,
 });
 
 db.connect();
@@ -37,7 +37,7 @@ app.use(express.static("public"));
 async function bookDetails(sort_by, sort_order) {
   try {
     const result = await db.query(
-      `SELECT * FROM book ORDER BY ${sort_by} ${sort_order}`
+      `SELECT * FROM book ORDER BY ${sort_by} ${sort_order}`,
     );
     return result;
   } catch (error) {
@@ -71,7 +71,7 @@ app.post("/save", async (req, res) => {
   const id = req.body.id;
   try {
     await db.query(
-      `UPDATE book SET review = '${edited__text}' WHERE book_id = '${id}'`
+      `UPDATE book SET review = '${edited__text}' WHERE book_id = '${id}'`,
     );
     res.redirect("/");
   } catch (error) {
@@ -92,9 +92,7 @@ app.post("/delete", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-
-  const { name, year, author, id, summary, quote, review, rating, pdf, buy } =
-    req.body;
+  const { name, year, author, id, summary, quote, review, rating, pdf, buy } = req.body;
 
   // book_id(id), pdf link and buy links aren't necessary
   if (name && year && author && summary && quote && review && rating) {
@@ -138,3 +136,4 @@ app.listen(port, (req, res) => {
 });
 
 // TODO: some sort of waiting sign when searching for books
+//blend bgc of the delete button better
