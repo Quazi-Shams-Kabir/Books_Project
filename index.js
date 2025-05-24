@@ -20,9 +20,9 @@ const port = 3000;
 const db = new pg.Client({
   user: "books_project_user",
   password: process.env.PG_PASS,
-  database: "books_project_27cv",
+  database: "books_project_27cv_6p2d",
   port: 5432,
-  host: "dpg-cq1q2nbv2p9s73d605kg-a.singapore-postgres.render.com",
+  host: "dpg-d0olroje5dus73d0b8pg-a.singapore-postgres.render.com",
   ssl: true,
 });
 
@@ -134,6 +134,3 @@ VALUES (
 app.listen(port, (req, res) => {
   console.log(`server running on port ${port}`);
 });
-
-// TODO: some sort of waiting sign when searching for books
-//blend bgc of the delete button better
