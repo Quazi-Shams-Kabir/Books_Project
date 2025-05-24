@@ -195,6 +195,9 @@ textarea:focus {
   justify-content: flex-end;
   padding: 25px 35px 0 0;
 }
+.sort_text{
+  text-align: center;
+}
 
 .sort select {
   background-color: #ddddddab;
