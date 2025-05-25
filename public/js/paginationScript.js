@@ -205,5 +205,3 @@ searchForm.addEventListener("submit", function (event) {
   // Initial display
   displayDataAndPagination();
 });
-
-// TODO: add an animation or something like that, so that when user search for a book it gives some kind of feedback to the user that they pressed the key and it is being processed

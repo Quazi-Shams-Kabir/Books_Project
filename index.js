@@ -66,13 +66,16 @@ app.post("/sort", async (req, res) => {
   res.redirect("/");
 });
 
+
 app.post("/save", async (req, res) => {
   const edited__text = req.body.edited__text;
   const id = req.body.id;
+
   try {
-    await db.query(
-      `UPDATE book SET review = '${edited__text}' WHERE book_id = '${id}'`,
-    );
+    const query = `UPDATE book SET review = $1 WHERE book_id = $2`;
+    const values = [edited__text, id];
+
+    await db.query(query, values);
     res.redirect("/");
   } catch (error) {
     console.error("Error updating book:", error);
@@ -92,35 +95,48 @@ app.post("/delete", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-  const { name, year, author, id, summary, quote, review, rating, pdf, buy } = req.body;
+  const { name, year, author, summary, quote, review, rating, pdf, buy } = req.body;
+  let book_id=req.body.id;
+  let id;
+  if (book_id){
+    id = book_id
+  } else {
+    id = name+author;
+  }
 
-  // book_id(id), pdf link and buy links aren't necessary
-  if (name && year && author && summary && quote && review && rating) {
-    try {
-      await db.query(`INSERT INTO book (
-    name,
-    year,
-    author,
-    book_id,
-    summary,
-    quote,
-    review,
-    rating,
-    pdf,
-    buy
-  )
-VALUES (
-    '${name}',
-    ${year},
-    '${author}',
-    '${id}',
-    '${summary}',
-    '${quote}',
-    '${review}',
-    '${rating}',
-    '${pdf}',
-    '${buy}'
-  );`);
+// pdf link buy link and book_id isn't must, although book_id will be there for
+// updating purpose
+if (name && year && author && summary && quote && review && rating) {
+  try {
+    const query = `
+      INSERT INTO book (
+        name,
+        year,
+        author,
+        book_id,
+        summary,
+        quote,
+        review,
+        rating,
+        pdf,
+        buy
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    `;
+
+    const values = [
+      name,
+      year,
+      author,
+      id,
+      summary,
+      quote,
+      review,
+      rating,
+      pdf,
+      buy
+    ];
+
+    await db.query(query, values);
       res.redirect("/");
     } catch (error) {
       console.error("Error adding book:", error);

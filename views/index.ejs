@@ -28,14 +28,14 @@
       <div class="leftSide">
         <div class="image">
           <img
-          <% if (book.book_id) {%>
-            src="https://covers.openlibrary.org/b/olid/<%=book.book_id%>-M.jpg"
-            <%} else {%>
-              src="assets/images/emptyBookCover.png"
-            <%}%>
-            alt="book cover"
-            width="190px"
-          />
+        <% if (book.book_id==book.name+book.author) {%>
+          src="assets/images/emptyBookCover.png"
+      <%} else {%>
+          src="https://covers.openlibrary.org/b/olid/<%=book.book_id%>-M.jpg"
+      <%}%>
+        alt="book cover"
+      width="190px"
+    />
         </div>
         <div class="links">
           <a

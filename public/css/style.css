@@ -71,6 +71,10 @@ html {
   box-shadow: 3px 3px 10px 2px gray;
 }
 
+.image > img:hover{
+  scale: 102%;
+}
+
 .links {
   align-items: space-between;
   display: flex;
