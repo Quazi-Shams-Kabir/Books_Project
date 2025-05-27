@@ -62,7 +62,7 @@ app.get("/", async (_, res) => {
 
 app.post("/sort", async (req, res) => {
   sort_by = req.body.sort;
-  sort_order = sort_by === "name" ? "ASC" : "DESC";
+  sort_order = sort_by === "year" ? "DESC" : "ASC";
   res.redirect("/");
 });
 
